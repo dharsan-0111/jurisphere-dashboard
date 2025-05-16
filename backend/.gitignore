@@ -1,0 +1,38 @@
+# Python Bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Env
+env/
+venv/
+ENV/
+.venv/
+backend-env/
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Uvicorn reload file
+*.reload
+
+# Compiled binaries
+*.so
+
+# Cache
+*.egg-info/
+.eggs/
+.cache/
+
+# Tests/__snapshots__ (if any)
+*.cover
+.coverage
+htmlcov/
