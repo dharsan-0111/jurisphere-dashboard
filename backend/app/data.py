@@ -6,7 +6,7 @@ customers = [
         "status": "active",
         "address": "123 Main St, Springfield",
         "joined_at": "2022-05-01T10:00:00Z",
-        "notes": "Loyal customer"
+        "notes": "Regular customer with consistent orders. Prefers email communication and has requested product updates. Good payment history."
     },
     {
         "id": "a7c2d8b3-1e6f-4a09-9b5c-b6e8d9a1f4e7",

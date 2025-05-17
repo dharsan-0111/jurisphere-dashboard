@@ -1,12 +1,4 @@
-export interface Customer {
-    id: string;
-    name: string;
-    email: string;
-    status: 'active' | 'inactive';
-    address: string;
-    joined_at: string;
-    notes: string;
-}
+import { Customer } from "@/types/customer";
 
 export async function fetchCustomers(): Promise<Customer[]> {
     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;

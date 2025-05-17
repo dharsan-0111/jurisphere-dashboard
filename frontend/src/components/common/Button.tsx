@@ -33,7 +33,7 @@ const Button: React.FC<ButtonProps> = (props): React.JSX.Element => {
 
     return (
         <button
-            className={`${className} ${variantClass} ${size === "small" ? "text-sm" : size === "medium" ? "text-base" : size === "large" ? "text-lg" : ""} cursor-pointer`}
+            className={`${className} ${variantClass} ${size === "small" ? "text-sm" : size === "medium" ? "text-base" : size === "large" ? "text-lg" : ""} cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
             onClick={onClick}
             disabled={disabled}
             type={type}

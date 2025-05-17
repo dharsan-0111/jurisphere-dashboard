@@ -2,24 +2,16 @@
 
 import { useState, useEffect, useMemo } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { DataTable } from "@/components/Table"
-import { SearchInput } from "@/components/SearchInput"
-import { Tabs } from "@/components/Tabs"
+import { DataTable } from "@/components/common/Table"
+import { SearchInput } from "@/components/common/SearchInput"
+import { Tabs } from "@/components/common/Tabs"
 import { useCustomers } from "@/hooks/query/useCustomers"
 import { useDebounce } from "@/hooks/useDebounce"
 import { ColumnDef } from "@tanstack/react-table"
-import { format } from "date-fns"
-import Chip from "@/components/Chip"
-
-type Customer = {
-  id: string
-  name: string
-  email: string
-  status: string
-  address: string
-  joined_at: string
-  notes: string
-}
+import Chip from "@/components/common/Chip"
+import { Modal } from "@/components/common/Modal"
+import CustomerDetails from "@/components/customers/CustomerDetails"
+import { Customer } from "@/types/customer"
 
 const statusTabs = [
   { id: "all", label: "All Customers" },
@@ -38,7 +30,8 @@ export default function CustomersPage() {
   const [activeTab, setActiveTab] = useState(initialStatus)
   const [searchQuery, setSearchQuery] = useState(initialSearch)
   const [isInitialLoad, setIsInitialLoad] = useState(true)
-  
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null)
+
   // Debounce the search query with 300ms delay
   const debouncedSearchQuery = useDebounce(searchQuery, 300)
   
@@ -72,6 +65,10 @@ export default function CustomersPage() {
   
   const columns: ColumnDef<Customer, any>[] = useMemo(
     () => [
+      {
+        accessorKey: "id",
+        header: "ID",
+      },
       {
         accessorKey: "name",
         header: "Customer Name",
@@ -128,6 +125,7 @@ export default function CustomersPage() {
   if (error) {
     return <div className="h-screen p-4 flex items-center justify-center">Error: {error.message}</div>
   }
+  console.log(selectedCustomer) 
 
   return (
     <div className="flex flex-col h-screen p-4">
@@ -149,14 +147,22 @@ export default function CustomersPage() {
         </div>
       </div>
       
-      {/* The flex-1 ensures the table takes remaining height */}
       <div className="flex-1 min-h-0">
         <DataTable 
           columns={columns} 
           data={filteredData} 
           loading={isLoading}
+          onRowClick={setSelectedCustomer}
         />
       </div>
+
+      <Modal
+        isOpen={!!selectedCustomer}
+        onClose={() => setSelectedCustomer(null)}
+        title="Customer Details"
+      >
+        <CustomerDetails customer={selectedCustomer} />
+      </Modal>
     </div>
   )
 }

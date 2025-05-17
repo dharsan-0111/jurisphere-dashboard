@@ -18,12 +18,14 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   loading?: boolean
+  onRowClick?: (row: TData) => void
 }
 
 export function DataTable<TData, TValue>({ 
   columns, 
   data,
-  loading = false 
+  loading = false,
+  onRowClick
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
 
@@ -102,7 +104,8 @@ export function DataTable<TData, TValue>({
                 table.getRowModel().rows.map((row, index) => (
                   <tr
                     key={row.id}
-                    className={`border-b border-[#F2F2F2] hover:bg-gray-50 transition-colors ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
+                    className={`border-b border-[#F2F2F2] hover:bg-gray-50 transition-colors cursor-pointer ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
+                    onClick={() => onRowClick?.(row.original)}
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td key={cell.id} className="p-4 text-gray-700 truncate">
