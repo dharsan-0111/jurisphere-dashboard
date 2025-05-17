@@ -9,10 +9,10 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-export const metadata: Metadata = {
-  title: "Jurisphere",
-  description: "Revolutionize your legal practice with AI-powered insights. Jurisphere helps attorneys work smarter, faster, and more efficiently.",
-};
+export const metadata = {
+  title: "Jurisphere Dashboard",
+  description: "Mini customer management dashboard built with FastAPI and Next.js"
+}
 
 export default function RootLayout({
   children,
