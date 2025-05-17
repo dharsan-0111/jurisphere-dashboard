@@ -72,9 +72,9 @@ The visual design and layout of the dashboard were intentionally kept clean, con
 ### 🎨 Inspiration Sources
 
 - **Dribbble UI Concepts**: Below are the designs which I took inspiration from.
-    ![Table Design](./public/inspirations/table-inspiration.png)
+    ![Table Design](../public/inspirations/table-inspiration.png)
 - **Untitled UI (Figma)**: The input for Search has been inspired from Figma's Untitled UI.
-    ![Input Inspiration](./public/inspirations/input-inspiration.png)
+    ![Input Inspiration](../public/inspirations/input-inspiration.png)
 
 ### 🔍 Component Focus
 
