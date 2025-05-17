@@ -12,17 +12,13 @@ export function Pagination<TData>({ table }: PaginationProps<TData>) {
   const currentPage = table.getState().pagination.pageIndex
   const totalPages = table.getPageCount()
   
-  // Generate page numbers with proper logic for ellipsis
   const getPageNumbers = () => {
-    // If 7 or fewer pages, show all
     if (totalPages <= 7) {
       return Array.from({ length: totalPages }, (_, i) => i)
     }
     
-    // Always include first and last page
     const pages = [0, totalPages - 1]
     
-    // Always include current and adjacent pages
     ;[-1, 0, 1].forEach(offset => {
       const page = currentPage + offset
       if (page > 0 && page < totalPages - 1) {
@@ -30,10 +26,8 @@ export function Pagination<TData>({ table }: PaginationProps<TData>) {
       }
     })
     
-    // Sort and dedupe
     const sortedUniquePages = [...new Set(pages)].sort((a, b) => a - b)
     
-    // Add ellipsis markers (as -1) between non-consecutive pages
     const result: Array<number> = []
     for (let i = 0; i < sortedUniquePages.length; i++) {
       result.push(sortedUniquePages[i])
@@ -63,7 +57,6 @@ export function Pagination<TData>({ table }: PaginationProps<TData>) {
       {/* Page numbers */}
       <div className="flex items-center gap-1">
         {pageNumbers.map((pageIndex, i) => {
-          // Render ellipsis
           if (pageIndex === -1) {
             return <span key={`ellipsis-${i}`} className="px-1 text-gray-500">...</span>
           }

@@ -7,11 +7,47 @@ interface ChipProps {
 const Chip: React.FC<ChipProps> = (props): React.JSX.Element => {
     const { children, className, chipColor } = props;
 
+    const getColorClasses = () => {
+        switch (chipColor) {
+            case "green":
+                return {
+                    bg: "bg-green-50",
+                    text: "text-green-700",
+                    border: "border-green-200",
+                    dot: "bg-green-500"
+                };
+            case "red":
+                return {
+                    bg: "bg-red-50", 
+                    text: "text-red-700",
+                    border: "border-red-200",
+                    dot: "bg-red-500"
+                };
+            case "gray":
+                return {
+                    bg: "bg-gray-50",
+                    text: "text-gray-700", 
+                    border: "border-gray-200",
+                    dot: "bg-gray-500"
+                };
+            default:
+                return {
+                    bg: "bg-gray-50",
+                    text: "text-gray-700",
+                    border: "border-gray-200", 
+                    dot: "bg-gray-500"
+                };
+        }
+    };
+
+    const colors = getColorClasses();
+
     return (
-        <div className={`${className} ${chipColor === "green" ? "bg-[#E6F6EC] text-[#008000]" : chipColor === "red" ? "bg-[#FFE3E3] text-[#FF0000]" : chipColor === "gray" ? "bg-[#F1F3F4] text-[#666666]" : ""} inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium`}>
+        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium ${colors.bg} ${colors.text} border ${colors.border} ${className}`}>
+            <span className={`mr-1.5 h-2 w-2 rounded-full ${colors.dot}`}></span>
             {children}
-        </div>
-    )
+        </span>
+    );
 }
 
 export default Chip;

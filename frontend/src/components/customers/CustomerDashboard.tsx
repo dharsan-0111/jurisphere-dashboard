@@ -38,7 +38,6 @@ export default function CustomerDashboard(props: CustomerDashboardProps) {
   const [isInitialLoad, setIsInitialLoad] = useState(true)
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null)
 
-  // Debounce the search query with 300ms delay
   const debouncedSearchQuery = useDebounce(searchQuery, 300)
   
   // Update URL when filters change
@@ -97,14 +96,12 @@ export default function CustomerDashboard(props: CustomerDashboardProps) {
   const filteredData = useMemo(() => {
     return customers
       .filter((customer) => {
-        // Filter by status tab
         if (activeTab !== "all") {
           return customer.status === activeTab
         }
         return true
       })
       .filter((customer) => {
-        // Filter by search query (name only)
         if (debouncedSearchQuery) {
           return customer.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
         }
@@ -123,7 +120,7 @@ export default function CustomerDashboard(props: CustomerDashboardProps) {
 
   return (
     <div className="flex flex-col h-screen p-4">
-      <h1 className="text-2xl font-bold mb-4">Customer Management</h1>
+      <h1 className="text-2xl font-bold mb-4">Customers</h1>
       
       <div className="mb-4 flex flex-col sm:flex-row justify-between items-center gap-4">
         <Tabs 

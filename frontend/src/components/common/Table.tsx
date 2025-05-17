@@ -46,7 +46,6 @@ export function DataTable<TData, TValue>({
     },
   })
 
-  // Generate skeleton rows based on page size
   const skeletonRows = Array.from({ length: table.getState().pagination.pageSize }, (_, index) => (
     <tr
       key={`skeleton-${index}`}
@@ -69,7 +68,7 @@ export function DataTable<TData, TValue>({
       return (
         <tr>
           <td 
-            colSpan={columns.length} 
+            colSpan={columns?.length} 
             className="h-[400px]"
           >
             <div className="h-full w-full flex items-center justify-center text-gray-500">
@@ -97,7 +96,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full h-full flex flex-col">
-      <div className="flex-1 flex flex-col overflow-hidden bg-white rounded-md">
+      <div className="flex-1 flex flex-col overflow-hidden border border-[#E9EAEB] bg-white rounded-md">
         <div className="overflow-x-auto">
           <table className="w-full text-sm table-fixed">
             <thead className="sticky top-0 z-10">
@@ -139,7 +138,6 @@ export function DataTable<TData, TValue>({
         </div>
       </div>
 
-      {/* Pagination - sticky to bottom */}
       <div className="sticky bottom-0 bg-white mt-auto">
         <Pagination table={table} />
       </div>

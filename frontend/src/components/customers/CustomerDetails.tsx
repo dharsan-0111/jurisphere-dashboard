@@ -4,6 +4,7 @@ import { useState } from "react"
 import type { Customer } from "@/types/customer"
 import { Copy, Check, Mail, Calendar, MapPin } from "lucide-react"
 import { format } from "date-fns"
+import Chip from "../common/Chip"
 
 interface CustomerDetailsProps {
   customer: Customer | null
@@ -26,7 +27,6 @@ export default function CustomerDetails({ customer }: CustomerDetailsProps) {
 
   return (
     <div className="space-y-8">
-      {/* Header with customer name and status */}
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-2xl font-semibold text-gray-900">{customer.name}</h2>
@@ -35,28 +35,16 @@ export default function CustomerDetails({ customer }: CustomerDetailsProps) {
           </div>
         </div>
         <div>
-          <span
-            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-              customer.status === "active"
-                ? "bg-green-50 text-green-700 border border-green-200"
-                : "bg-red-50 text-red-700 border border-red-200"
-            }`}
-          >
-            <span
-              className={`mr-1.5 h-2 w-2 rounded-full ${customer.status === "active" ? "bg-green-500" : "bg-red-500"}`}
-            ></span>
+          <Chip chipColor={customer.status === "active" ? "green" : "red"} className="rounded-full">    
             {customer.status.charAt(0).toUpperCase() + customer.status.slice(1)}
-          </span>
+          </Chip>
         </div>
       </div>
 
-      {/* Divider */}
       <div className="border-t border-gray-200"></div>
 
-      {/* Contact Information Section */}
       <div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Email */}
           <div className="space-y-2">
             <div className="flex items-center text-sm text-gray-500">
               <Mail size={16} className="mr-2" />
@@ -78,7 +66,6 @@ export default function CustomerDetails({ customer }: CustomerDetailsProps) {
             </div>
           </div>
 
-          {/* Joined Date */}
           <div className="space-y-2">
             <div className="flex items-center text-sm text-gray-500">
               <Calendar size={16} className="mr-2" />
@@ -87,7 +74,6 @@ export default function CustomerDetails({ customer }: CustomerDetailsProps) {
             <div className="text-gray-900 font-medium">{format(new Date(customer.joined_at), "MMMM d, yyyy")}</div>
           </div>
 
-          {/* Address */}
           <div className="space-y-2 md:col-span-2">
             <div className="flex items-center text-sm text-gray-500">
               <MapPin size={16} className="mr-2" />
@@ -98,10 +84,8 @@ export default function CustomerDetails({ customer }: CustomerDetailsProps) {
         </div>
       </div>
 
-      {/* Divider */}
       <div className="border-t border-gray-200"></div>
 
-      {/* Notes Section */}
       <div>
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium text-gray-500 tracking-wider">Notes</h3>
