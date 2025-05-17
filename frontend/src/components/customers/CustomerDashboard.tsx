@@ -120,7 +120,7 @@ export default function CustomerDashboard(props: CustomerDashboardProps) {
 
   return (
     <div className="flex flex-col h-screen p-4">
-      <h1 className="text-2xl font-bold mb-4">Customers</h1>
+      <h1 className="text-2xl font-bold text-[#181D27] mb-4">Customers</h1>
       
       <div className="mb-4 flex flex-col sm:flex-row justify-between items-center gap-4">
         <Tabs 
