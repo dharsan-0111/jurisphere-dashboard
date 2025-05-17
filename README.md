@@ -127,6 +127,15 @@ Once the server is running, the app will be available at:
 http://localhost:3000
 ```
 
+## Environment Variables
+
+Create a `.env.local` file inside the `frontend/` directory with the following contents:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+```
+This ensures the frontend can communicate with the FastAPI backend during local development.
+
 Ensure the backend is also running at `http://localhost:8000` for data fetching.
 
 ---
