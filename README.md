@@ -1,6 +1,6 @@
 # Jurisphere Customer Dashboard
 
-Backend implementation using FastAPI.
+## Backend Implementation
 
 ## Tech Stack
 
