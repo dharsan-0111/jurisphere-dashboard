@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Built with **Next.js (App Router)**, **React**, **Tailwind CSS**, **TypeScript**, and **TanStack Query**.
 
-## Getting Started
+### Folder Structure
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+frontend/
+├── app/                      # App Router entry points
+│   └── page.tsx              # Main dashboard page
+├── components/
+│   ├── common/               # Reusable UI components (Button, Modal, Tabs, etc.)
+│   └── customers/            # Feature-specific components (Table, Details)
+├── hooks/query
+│   └── useCustomers.ts       # TanStack Query hook for fetching customer data
+├── lib/api/customer
+│   └── customer_api.ts                # API call abstraction
+├── types/
+│   └── customer.ts           # TypeScript interface for customer
+├── public/                   # Static assets
+├── next.config.js            # Next.js config
+├── tailwind.config.js        # Tailwind configuration
+├── tsconfig.json             # TypeScript configuration
+└── .env                      # Environment variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js 14** (App Router)
+- **React 18**
+- **TypeScript**
+- **Tailwind CSS**
+- **TanStack Query v5**
+- **Jest + React Testing Library** for unit testing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Setup & Installation
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js 18+
+- npm or yarn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Steps
 
-## Deploy on Vercel
+```bash
+# Navigate to frontend directory
+cd frontend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Install dependencies
+npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Start the development server
+npm run dev
+```
+
+### Development Server
+
+Once the server is running, the app will be available at:
+
+```
+http://localhost:3000
+```
+
+Ensure the backend is also running at `http://localhost:8000` for data fetching.
+
+---
+
+## UI Design Decisions
+
+The visual design and layout of the dashboard were intentionally kept clean, consistent, and focused on usability.
+
+### 🎨 Inspiration Sources
+
+- **Dribbble UI Concepts**: Below are the designs which I took inspiration from.
+    ![Table Design](./public/inspirations/table-inspiration.png)
+- **Untitled UI (Figma)**: The input for Search has been inspired from Figma's Untitled UI.
+    ![Input Inspiration](./public/inspirations/input-inspiration.png)
+
+### 🔍 Component Focus
+
+- **Tabs**: Designed to resemble native navigation tabs found in modern SaaS dashboards.
+- **Search Input**: Positioned with sufficient padding and used with debounce to avoid over-fetching.
+- **Modal**: Mimics centered dialog behavior from professional UI kits — scroll-locking, escape key close, and outside-click detection implemented manually for control.
+
+## Testing
+
+Basic unit tests are included for core interactive components:
+
+- **Modal**: Tests ensure the modal opens and closes as expected, and handles ESC key and outside click behavior.
+- **Table**: Tests verify that customer data renders correctly and sorting interactions function as intended.
+
+Tests are written using:
+
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+
+To run tests:
+
+```bash
+# from the frontend directory
+npm run test
+```
+
+Test files are co-located with their respective components using the `.test.tsx` naming convention.
