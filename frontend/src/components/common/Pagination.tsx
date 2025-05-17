@@ -19,12 +19,13 @@ export function Pagination<TData>({ table }: PaginationProps<TData>) {
     
     const pages = [0, totalPages - 1]
     
-    ;[-1, 0, 1].forEach(offset => {
+    // Add surrounding page numbers
+    for (const offset of [-1, 0, 1]) {
       const page = currentPage + offset
       if (page > 0 && page < totalPages - 1) {
         pages.push(page)
       }
-    })
+    }
     
     const sortedUniquePages = [...new Set(pages)].sort((a, b) => a - b)
     

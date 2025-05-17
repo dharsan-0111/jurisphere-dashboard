@@ -55,7 +55,6 @@ export function Modal({ isOpen, onClose, title, children, className = "" }: Moda
         data-testid="modal-backdrop"
       />
 
-      {/* Modal */}
       <div
         ref={modalRef}
         role="dialog"
