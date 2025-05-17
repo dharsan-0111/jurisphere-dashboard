@@ -50,16 +50,22 @@ export function Modal({ isOpen, onClose, title, children, className = "" }: Moda
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
+      <div 
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+        data-testid="modal-backdrop"
+      />
 
       {/* Modal */}
       <div
         ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
         className={`relative bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-auto ${className}`}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-[#E4E4E7]">
-          <h2 className="text-lg font-semibold">{title || "Modal"}</h2>
+          <h2 id="modal-title" className="text-lg font-semibold">{title || "Modal"}</h2>
           <button
             onClick={onClose}
             className="p-1 rounded-full hover:bg-gray-100 transition-colors"

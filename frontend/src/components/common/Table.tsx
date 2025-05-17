@@ -60,14 +60,44 @@ export function DataTable<TData, TValue>({
     </tr>
   ))
 
+  const renderTableBody = () => {
+    if (loading) {
+      return skeletonRows
+    }
+
+    if (data.length === 0) {
+      return (
+        <tr>
+          <td colSpan={columns.length} className="p-4 text-center text-gray-500">
+            No data available
+          </td>
+        </tr>
+      )
+    }
+
+    return table.getRowModel().rows.map((row, index) => (
+      <tr
+        key={row.id}
+        className={`border-b border-[#F2F2F2] hover:bg-gray-50 transition-colors cursor-pointer ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
+        onClick={() => onRowClick?.(row.original)}
+      >
+        {row.getVisibleCells().map((cell) => (
+          <td key={cell.id} className="p-4 text-gray-700 truncate">
+            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          </td>
+        ))}
+      </tr>
+    ))
+  }
+
   return (
     <div className="w-full h-full flex flex-col">
-      <div className="flex-1 flex flex-col border border-gray-200 overflow-hidden bg-white rounded-md">
+      <div className="flex-1 flex flex-col overflow-hidden bg-white rounded-md">
         <div className="overflow-x-auto">
           <table className="w-full text-sm table-fixed">
             <thead className="sticky top-0 z-10">
               {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id} className="border-b border-[#F2F2F2] bg-[#F9FBFC]">
+                <tr key={headerGroup.id} className="border-b border-[#F2F2F2] bg-[#F9FBFC] rounded-t-md">
                   {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
@@ -98,23 +128,7 @@ export function DataTable<TData, TValue>({
               ))}
             </thead>
             <tbody className="overflow-y-auto">
-              {loading ? (
-                skeletonRows
-              ) : (
-                table.getRowModel().rows.map((row, index) => (
-                  <tr
-                    key={row.id}
-                    className={`border-b border-[#F2F2F2] hover:bg-gray-50 transition-colors cursor-pointer ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
-                    onClick={() => onRowClick?.(row.original)}
-                  >
-                    {row.getVisibleCells().map((cell) => (
-                      <td key={cell.id} className="p-4 text-gray-700 truncate">
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </td>
-                    ))}
-                  </tr>
-                ))
-              )}
+              {renderTableBody()}
             </tbody>
           </table>
         </div>
