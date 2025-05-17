@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import type { Customer } from "@/types/customer"
-import { Copy, Check, Mail, Calendar, MapPin, ExternalLink } from "lucide-react"
+import { Copy, Check, Mail, Calendar, MapPin } from "lucide-react"
 import { format } from "date-fns"
 
 interface CustomerDetailsProps {

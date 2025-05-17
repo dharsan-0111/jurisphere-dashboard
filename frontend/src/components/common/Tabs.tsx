@@ -17,7 +17,7 @@ export function Tabs({ tabs, activeTab, onChange }: TabsProps) {
         onClick={() => onChange(tab.id)}
         variant="tabs"
         active={activeTab === tab.id}
-        className="px-4 text-sm font-medium relative h-full"
+        className="px-4 text-sm font-medium text-[#60666D] relative h-full"
         style={{ transition: "color 0.15s ease" }}
       >
         {tab.label}

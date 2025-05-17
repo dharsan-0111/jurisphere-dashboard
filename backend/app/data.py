@@ -30,7 +30,7 @@ customers = [
         "id": "0c5e6f7a-3b8c-49d0-a2e1-8f4a9b5c6d8e",
         "name": "David Wilson",
         "email": "david.wilson@test.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "234 Pine Ave, Shelbyville",
         "joined_at": "2022-11-20T16:10:00Z",
         "notes": "Potential churn"
@@ -84,7 +84,7 @@ customers = [
         "id": "6f7a8b9c-0d1e-2f3a-4b5c-6d8f7a8b9c0d",
         "name": "Jack Thomas",
         "email": "jack.thomas@test.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "234 Sunset Blvd, Schenectady",
         "joined_at": "2022-07-22T09:20:00Z",
         "notes": "Inactive for 3 months"
@@ -120,7 +120,7 @@ customers = [
         "id": "a0470447-48ab-78cb-c978-be3c5274fe1b",
         "name": "Nancy Blue",
         "email": "nancy.blue@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "444 Birch Ave, Anytown",
         "joined_at": "2022-09-10T09:00:00Z",
         "notes": "Needs attention"
@@ -174,7 +174,7 @@ customers = [
         "id": "06ad6ad0-aeb4-de35-2f2d-1492b8da5471",
         "name": "Tina Green",
         "email": "tina.green@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "1000 Maple Dr, Anytown",
         "joined_at": "2022-08-01T17:10:00Z",
         "notes": "Potential"
@@ -210,7 +210,7 @@ customers = [
         "id": "45fcaf04-3c1b-77c5-e46a-fab0bbbbbb3f",
         "name": "Xavier Hernandez",
         "email": "xavier.hernandez@email.org",
-        "status": "pending",
+        "status": "inactive",
         "address": "99 Mountain View, California",
         "joined_at": "2023-01-02T09:00:00Z",
         "notes": "Potential"
@@ -246,7 +246,7 @@ customers = [
         "id": "89jgie48-705f-1109-28ae-3df4fffffff3",
         "name": "Ben Carter",
         "email": "ben.carter@test.org",
-        "status": "pending",
+        "status": "inactive",
         "address": "4 Times Square, New York",
         "joined_at": "2022-09-05T14:00:00Z",
         "notes": "Potential"
@@ -282,7 +282,7 @@ customers = [
         "id": "c3niik82-b493-554d-6c2e-713800000007",
         "name": "Frank Wright",
         "email": "frank.wright@domain.org",
-        "status": "pending",
+        "status": "inactive",
         "address": "1 Microsoft Way, Redmond",
         "joined_at": "2023-04-26T13:44:00Z",
         "notes": "Potential"
@@ -318,7 +318,7 @@ customers = [
         "id": "07rmmo26-f8d7-9981-0a62-b57c00000011",
         "name": "Jack Nelson",
         "email": "jack.nelson@email.org",
-        "status": "pending",
+        "status": "inactive",
         "address": "333 Third Street, Houston",
         "joined_at": "2022-12-28T16:25:00Z",
         "notes": "Potential"
@@ -354,7 +354,7 @@ customers = [
         "id": "41vqqs60-3c0b-33c5-4e06-f9b000000015",
         "name": "Noah Garcia",
         "email": "noah.garcia@email.org",
-        "status": "pending",
+        "status": "inactive",
         "address": "777 Seventh Road, San Diego",
         "joined_at": "2023-01-30T14:15:00Z",
         "notes": "Potential"
@@ -390,7 +390,7 @@ customers = [
         "id": "85zuua04-704f-7799-824a-3d4f00000019",
         "name": "Alexander Garcia",
         "email": "alexander.garcia@email.org",
-        "status": "pending",
+        "status": "inactive",
         "address": "1111 Eleventh Ave, Portland",
         "joined_at": "2022-08-29T12:05:00Z",
         "notes": "Potential"
@@ -453,7 +453,7 @@ customers = [
         "id": "cf747e70-30b6-4088-b646-9364e6bc11d0",
         "name": "George Xu",
         "email": "george.xu@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "626 Oak St, Springfield",
         "joined_at": "2024-11-23T22:14:32Z",
         "notes": "High-value"
@@ -462,7 +462,7 @@ customers = [
         "id": "95f10ed4-ecb5-48e3-a316-e2785394f849",
         "name": "Nina Vaughn",
         "email": "nina.vaughn@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "329 Elm St, Hill Valley",
         "joined_at": "2022-05-29T14:12:53Z",
         "notes": "New lead"
@@ -480,7 +480,7 @@ customers = [
         "id": "5939d737-2c27-4d0c-a432-d6c038d1a900",
         "name": "Jasmine Underwood",
         "email": "jasmine.underwood@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "653 Hill St, Springfield",
         "joined_at": "2023-02-20T05:08:51Z",
         "notes": "High-value"
@@ -498,7 +498,7 @@ customers = [
         "id": "f02f7dad-a6d8-4910-8b4a-dc9a6531a8d5",
         "name": "Fiona Brown",
         "email": "fiona.brown@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "920 Oak St, Hill Valley",
         "joined_at": "2024-11-12T14:08:57Z",
         "notes": "Inactive recently"
@@ -516,7 +516,7 @@ customers = [
         "id": "40a5386d-1de9-4d58-9fe6-a900cc465349",
         "name": "Xena Green",
         "email": "xena.green@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "385 Elm St, Star City",
         "joined_at": "2024-04-18T22:32:40Z",
         "notes": "New lead"
@@ -570,7 +570,7 @@ customers = [
         "id": "639dbe40-c661-45c8-bab5-55b4615ae2c0",
         "name": "Vera Clark",
         "email": "vera.clark@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "558 Sunset Blvd, Metropolis",
         "joined_at": "2024-02-27T14:53:21Z",
         "notes": "Potential upsell"
@@ -579,7 +579,7 @@ customers = [
         "id": "e3abac16-e6ba-4f67-aef8-e8df38bb9bd1",
         "name": "Quinn Turner",
         "email": "quinn.turner@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "354 Cedar Ln, Gotham",
         "joined_at": "2023-03-01T12:28:17Z",
         "notes": "Needs attention"
@@ -597,7 +597,7 @@ customers = [
         "id": "02df0616-8d71-4c49-9201-a268398321f6",
         "name": "Will Klein",
         "email": "will.klein@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "461 Sunset Blvd, Gotham",
         "joined_at": "2024-04-30T12:54:50Z",
         "notes": "New lead"
@@ -660,7 +660,7 @@ customers = [
         "id": "0e8e6700-f343-433c-b9ea-0788d2355a44",
         "name": "Rita Xu",
         "email": "rita.xu@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "619 Hill St, Metropolis",
         "joined_at": "2022-07-24T02:10:27Z",
         "notes": "Potential upsell"
@@ -669,7 +669,7 @@ customers = [
         "id": "0be7a634-9d35-4191-922d-5f166e871fe5",
         "name": "Zoey Reed",
         "email": "zoey.reed@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "108 Park Rd, Gotham",
         "joined_at": "2021-10-01T06:55:51Z",
         "notes": "New lead"
@@ -696,7 +696,7 @@ customers = [
         "id": "9fe83be5-e1ca-466e-a843-a97e468736be",
         "name": "Tina Clark",
         "email": "tina.clark@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "222 Main St, Riverside",
         "joined_at": "2022-09-05T06:12:44Z",
         "notes": "Frequent buyer"
@@ -750,7 +750,7 @@ customers = [
         "id": "2fd3d658-1ab4-4ed8-adf9-efabbbbffeb4",
         "name": "Umar Underwood",
         "email": "umar.underwood@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "155 Oak St, Springfield",
         "joined_at": "2021-05-29T17:19:03Z",
         "notes": "New lead"
@@ -876,7 +876,7 @@ customers = [
         "id": "79af11b6-b29a-4b4f-887b-b9b3025803cf",
         "name": "Rita Brown",
         "email": "rita.brown@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "170 Pine Ave, Gotham",
         "joined_at": "2023-01-21T14:29:48Z",
         "notes": "Potential upsell"
@@ -885,7 +885,7 @@ customers = [
         "id": "541f60dc-b10f-4c79-96c8-290996e0b159",
         "name": "Aaron Evans",
         "email": "aaron.evans@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "267 Sunset Blvd, Springfield",
         "joined_at": "2022-03-05T01:56:52Z",
         "notes": "Needs attention"
@@ -894,7 +894,7 @@ customers = [
         "id": "004427cf-35b5-43da-8f18-72beb4cdcbdd",
         "name": "Kevin Owens",
         "email": "kevin.owens@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "171 Park Rd, Hill Valley",
         "joined_at": "2023-06-28T03:59:35Z",
         "notes": "Potential upsell"
@@ -912,7 +912,7 @@ customers = [
         "id": "258b37fd-ca8e-434d-b7ca-80858651f92e",
         "name": "Oscar Zimmer",
         "email": "oscar.zimmer@example.com",
-        "status": "pending",
+        "status": "inactive",
         "address": "943 Sunset Blvd, Springfield",
         "joined_at": "2023-10-08T01:23:43Z",
         "notes": "Frequent buyer"

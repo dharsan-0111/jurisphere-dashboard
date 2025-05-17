@@ -68,8 +68,13 @@ export function DataTable<TData, TValue>({
     if (data.length === 0) {
       return (
         <tr>
-          <td colSpan={columns.length} className="p-4 text-center text-gray-500">
-            No data available
+          <td 
+            colSpan={columns.length} 
+            className="h-[400px]"
+          >
+            <div className="h-full w-full flex items-center justify-center text-gray-500">
+              No data available
+            </div>
           </td>
         </tr>
       )

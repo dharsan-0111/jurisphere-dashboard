@@ -68,7 +68,7 @@ export function Modal({ isOpen, onClose, title, children, className = "" }: Moda
           <h2 id="modal-title" className="text-lg font-semibold">{title || "Modal"}</h2>
           <button
             onClick={onClose}
-            className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+            className="p-1 cursor-pointer rounded-full hover:bg-gray-100 transition-colors"
             aria-label="Close modal"
           >
             <X className="h-5 w-5" />
