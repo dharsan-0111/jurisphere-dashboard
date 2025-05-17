@@ -147,3 +147,24 @@ The visual design and layout of the dashboard were intentionally kept clean, con
 - **Tabs**: Designed to resemble native navigation tabs found in modern SaaS dashboards.
 - **Search Input**: Positioned with sufficient padding and used with debounce to avoid over-fetching.
 - **Modal**: Mimics centered dialog behavior from professional UI kits — scroll-locking, escape key close, and outside-click detection implemented manually for control.
+
+## Testing
+
+Basic unit tests are included for core interactive components:
+
+- **Modal**: Tests ensure the modal opens and closes as expected, and handles ESC key and outside click behavior.
+- **Table**: Tests verify that customer data renders correctly and sorting interactions function as intended.
+
+Tests are written using:
+
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+
+To run tests:
+
+```bash
+# from the frontend directory
+npm run test
+```
+
+Test files are co-located with their respective components using the `.test.tsx` naming convention.
