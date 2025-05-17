@@ -6,8 +6,10 @@ import { DataTable } from "@/components/Table"
 import { SearchInput } from "@/components/SearchInput"
 import { Tabs } from "@/components/Tabs"
 import { useCustomers } from "@/hooks/query/useCustomers"
+import { useDebounce } from "@/hooks/useDebounce"
 import { ColumnDef } from "@tanstack/react-table"
 import { format } from "date-fns"
+import Chip from "@/components/Chip"
 
 type Customer = {
   id: string
@@ -37,6 +39,9 @@ export default function CustomersPage() {
   const [searchQuery, setSearchQuery] = useState(initialSearch)
   const [isInitialLoad, setIsInitialLoad] = useState(true)
   
+  // Debounce the search query with 300ms delay
+  const debouncedSearchQuery = useDebounce(searchQuery, 300)
+  
   // Fetch customers
   const { data: customers = [], isLoading, error } = useCustomers()
   
@@ -54,8 +59,8 @@ export default function CustomersPage() {
       params.set("status", activeTab)
     }
     
-    if (searchQuery) {
-      params.set("name", searchQuery)
+    if (debouncedSearchQuery) {
+      params.set("name", debouncedSearchQuery)
     }
     
     const queryString = params.toString()
@@ -63,7 +68,7 @@ export default function CustomersPage() {
     
     // Update URL without refreshing the page
     router.push(newUrl, { scroll: false })
-  }, [activeTab, searchQuery, router, isInitialLoad])
+  }, [activeTab, debouncedSearchQuery, router, isInitialLoad])
   
   const columns: ColumnDef<Customer, any>[] = useMemo(
     () => [
@@ -79,22 +84,16 @@ export default function CustomersPage() {
         accessorKey: "status",
         header: "Status",
         cell: ({ row }) => (
-          <div
-            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-              row.original.status === "active"
-                ? "bg-green-100 text-green-800"
-                : "bg-gray-100 text-gray-800"
-            }`}
-          >
-            {row.original.status}
-          </div>
+          <Chip chipColor={row.original.status === "active" ? "green" : "red"}>
+            {row.original.status === "active" ? "Active" : "Inactive"}
+          </Chip>
         ),
       },
     ],
     []
   )
   
-  // Filter data based on active tab and search query
+  // Filter data based on active tab and debounced search query
   const filteredData = useMemo(() => {
     return customers
       .filter((customer) => {
@@ -106,12 +105,12 @@ export default function CustomersPage() {
       })
       .filter((customer) => {
         // Filter by search query (name only)
-        if (searchQuery) {
-          return customer.name.toLowerCase().includes(searchQuery.toLowerCase())
+        if (debouncedSearchQuery) {
+          return customer.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
         }
         return true
       })
-  }, [customers, activeTab, searchQuery])
+  }, [customers, activeTab, debouncedSearchQuery])
 
   // Handlers for filter changes
   const handleTabChange = (tabId: string) => {
@@ -122,9 +121,9 @@ export default function CustomersPage() {
     setSearchQuery(value)
   }
 
-  if (isLoading) {
-    return <div className="h-screen p-4 flex items-center justify-center">Loading...</div>
-  }
+  // if (isLoading) {
+  //   return <div className="h-screen p-4 flex items-center justify-center">Loading...</div>
+  // }
 
   if (error) {
     return <div className="h-screen p-4 flex items-center justify-center">Error: {error.message}</div>
@@ -152,7 +151,11 @@ export default function CustomersPage() {
       
       {/* The flex-1 ensures the table takes remaining height */}
       <div className="flex-1 min-h-0">
-        <DataTable columns={columns} data={filteredData} />
+        <DataTable 
+          columns={columns} 
+          data={filteredData} 
+          loading={isLoading}
+        />
       </div>
     </div>
   )

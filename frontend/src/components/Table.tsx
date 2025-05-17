@@ -12,13 +12,19 @@ import {
 import { useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
 import { Pagination } from "./Pagination"
+import { Skeleton } from "./Skeleton"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  loading?: boolean
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ 
+  columns, 
+  data,
+  loading = false 
+}: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
 
   const table = useReactTable({
@@ -38,6 +44,20 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
     },
   })
 
+  // Generate skeleton rows based on page size
+  const skeletonRows = Array.from({ length: table.getState().pagination.pageSize }, (_, index) => (
+    <tr
+      key={`skeleton-${index}`}
+      className={`border-b border-[#F2F2F2] ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
+    >
+      {columns.map((_, cellIndex) => (
+        <td key={`skeleton-cell-${cellIndex}`} className="p-4">
+          <Skeleton className="h-4 w-3/4" />
+        </td>
+      ))}
+    </tr>
+  ))
+
   return (
     <div className="w-full h-full flex flex-col">
       <div className="flex-1 flex flex-col border border-gray-200 overflow-hidden bg-white rounded-md">
@@ -45,11 +65,11 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
           <table className="w-full text-sm table-fixed">
             <thead className="sticky top-0 z-10">
               {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id} className="border-b bg-gray-50">
+                <tr key={headerGroup.id} className="border-b border-[#F2F2F2] bg-[#F9FBFC]">
                   {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
-                      className="px-4 py-3 text-left font-medium text-gray-600 select-none"
+                      className="px-4 py-3 text-left font-medium text-black select-none"
                       onClick={header.column.getToggleSortingHandler()}
                       style={{ cursor: header.column.getCanSort() ? "pointer" : "default" }}
                     >
@@ -76,25 +96,29 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
               ))}
             </thead>
             <tbody className="overflow-y-auto">
-              {table.getRowModel().rows.map((row, index) => (
-                <tr
-                  key={row.id}
-                  className={`border-b hover:bg-gray-50 transition-colors ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="px-4 py-3 text-gray-700 truncate">
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
-                  ))}
-                </tr>
-              ))}
+              {loading ? (
+                skeletonRows
+              ) : (
+                table.getRowModel().rows.map((row, index) => (
+                  <tr
+                    key={row.id}
+                    className={`border-b border-[#F2F2F2] hover:bg-gray-50 transition-colors ${index % 2 === 0 ? "bg-white" : "bg-gray-50/30"}`}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <td key={cell.id} className="p-4 text-gray-700 truncate">
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
       </div>
 
       {/* Pagination - sticky to bottom */}
-      <div className="sticky bottom-0 bg-white border-t border-gray-200 mt-auto">
+      <div className="sticky bottom-0 bg-white mt-auto">
         <Pagination table={table} />
       </div>
     </div>

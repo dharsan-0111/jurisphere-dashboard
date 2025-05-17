@@ -2,6 +2,7 @@
 
 import { Table } from "@tanstack/react-table"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import Button from "./Button"
 
 interface PaginationProps<TData> {
   table: Table<TData>
@@ -47,19 +48,20 @@ export function Pagination<TData>({ table }: PaginationProps<TData>) {
   const pageNumbers = getPageNumbers()
   
   return (
-    <div className="flex items-center justify-between py-3 px-2">
+    <div className="flex items-center justify-center gap-4 py-3 px-2">
       {/* Previous button */}
-      <button
+      <Button
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
-        className="p-1 rounded text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        variant="primary"
+        className="p-1 rounded"
         aria-label="Previous page"
       >
-        <ChevronLeft className="h-5 w-5" />
-      </button>
+        <ChevronLeft className="h-5 w-5 color-[#F7F9FC]" />
+      </Button>
 
       {/* Page numbers */}
-      <div className="flex items-center gap-1 mx-auto">
+      <div className="flex items-center gap-1">
         {pageNumbers.map((pageIndex, i) => {
           // Render ellipsis
           if (pageIndex === -1) {
@@ -69,32 +71,32 @@ export function Pagination<TData>({ table }: PaginationProps<TData>) {
           const isActive = currentPage === pageIndex
           
           return (
-            <button
+            <Button
               key={pageIndex}
               onClick={() => table.setPageIndex(pageIndex)}
-              className={`h-7 w-7 flex items-center justify-center text-sm rounded ${
-                isActive 
-                  ? "bg-gray-900 text-white" 
-                  : "text-gray-600 hover:bg-gray-100"
-              }`}
+              className="h-7 w-7 flex items-center justify-center rounded"
+              variant="primary"
+              active={isActive}
               aria-label={`Page ${pageIndex + 1}`}
               aria-current={isActive ? "page" : undefined}
+              size="small"
             >
               {pageIndex + 1}
-            </button>
+            </Button>
           )
         })}
       </div>
 
       {/* Next button */}
-      <button
+      <Button
         onClick={() => table.nextPage()}
         disabled={!table.getCanNextPage()}
-        className="p-1 rounded text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        variant="primary"
+        className="p-1 rounded"
         aria-label="Next page"
       >
-        <ChevronRight className="h-5 w-5" />
-      </button>
+        <ChevronRight className="h-5 w-5 color-[#F7F9FC]" />
+      </Button>
     </div>
   )
 } 
